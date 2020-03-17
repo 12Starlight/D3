@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualize Data</title>
+  <script src='http://d3js.org/d3.v3.min.js'></script>
+</head>
+<body>
+  
+  <script>
+
+    var dataArray = [20, 40, 50];
+
+    var canvas = d3.select('body')
+      .append('svg')
+      .attr('width', 500)
+      .attr('height', 500);
+
+    var bars = canvas.selectAll('rect')
+      .data(dataArray)
+      .enter()
+        .append('rect')
+        .attr('width', (d) => { // each data element we have in our placeholder selection
+          return d * 10; 
+        }) // goes through all the data elements, then for each data element, it returns the value for that data
+        .attr('height', 50) 
+        .attr('y', (d, i) => { // data, index
+          return i * 100
+        })
+
+  </script>
+
+</body>
+</html>
