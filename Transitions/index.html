@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transitions</title>
+  <script src='http://d3js.org/d3.v3.min.js' ></script>
+</head>
+<body>
+  
+  <script>
+    
+    const canvas = d3.select('body')
+      .append('svg')
+      .attr('width', 500)
+      .attr('height', 500)
+
+    let circle = canvas.append('circle')
+      .attr('cx', 50)
+      .attr('cy', 50)
+      .attr('r', 25); 
+
+    circle.transition()
+      .duration(1500) // so cool
+      .delay(2000)
+      .attr('cx', 150)
+      // .transition()
+      //   .attr('cy', 200)
+      //       .transition()
+      // .attr('cx', 50)
+      .each('end', function () { // we need to use function for this to work properly
+        d3.select(this).attr('fill', 'blue')
+      })
+      .each('start', function () { // we need to use function for this to work properly
+        d3.select(this).attr('fill', 'red')
+      })
+
+  </script>
+
+</body>
+</html>
