@@ -3,9 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Loading External Data</title>
+  <script src='http://d3js.org/d3.v5.min.js' ></script>
 </head>
 <body>
   
+  <script>
+
+    // d3.csv() // to use csv
+    d3.csv("mydata.json", (data) => {
+      console.log(data)
+      debugger; 
+
+      let canvas = d3.select('body').append('svg')
+        .attr('width', 500)
+        .attr('height', 500)
+
+      canvas.selectAll('rect')
+        .data(data)
+        .enter() 
+          .append('rect')
+          .attr('width', (d) => { 
+            return d.age * 10;
+          })
+          .attr('height', 45)
+          .attr('y', (d, i) => {
+            return i * 50;
+          })
+          .attr('fill', 'blue')
+
+      canvas.selectAll('rect')
+          .data(data)
+          .enter()
+            .append('text')
+            .attr('fill', 'white')
+            .attr('height', 45)
+            .attr('y', (d, i) => {
+              return i * 50 + 24;
+            })
+            .text((d) => {
+              return d.name 
+            })
+            .attr('fill', 'blue')
+        });
+
+  </script>
+
 </body>
 </html>
+
+
+
+
